@@ -1,13 +1,59 @@
-PRIMERO HAY QUE LEVANTAR LOS CONTENEDORES DE DOCKER-COMPOSE CON LOS SIGUIENTES COMANDOS EN LA TERMINAL.
+====================
+DESIS - SISTEMA DE PRODUCTOS
+====================
 
-# levantamos docker con el siguiente comando
+Este proyecto fue desarrollado usando PHP y PostgreSQL como base de datos. A continuación se detallan los pasos para instalar y levantar el entorno correctamente utilizando Docker y Docker Compose.
+
+====================
+REQUISITOS
+====================
+- Docker
+- Docker Compose
+- Git (para clonar el repositorio)
+
+====================
+VERSIONES UTILIZADAS
+====================
+- PHP: 8.1
+- PostgreSQL: 13
+- PgAdmin: 6
+
+====================
+INSTRUCCIONES DE INSTALACIÓN
+====================
+
+1. CLONAR EL REPOSITORIO
+
+git clone https://github.com/gamaades/desis_sistema_registro_producto.git
+cd desis_sistema_registro_producto
+
+====================
+
+2. HAY QUE LEVANTAR LOS SERVICIOS DE DOCKER-COMPOSE CON LOS SIGUIENTES COMANDOS EN LA TERMINAL.
+
 # $ docker-compose up -d postgres
 # $ docker-compose up -d pgadmin
 # $ docker-compose up -d php
 
-PODEMOS REVISAR QUE LOS CONTENEDORES ESTEN CORRIENDO CON EL COMANDO docker ps
+Esto levantará:
 
-LUEGO REVISAMOS LA IP DE LA BASE DE DATOS QUE ESTA EN LA IMAGE postgres:13, PARA ESTO USAMOS EL SIGUIENTE COMANDO
+- PostgreSQL
+- PgAdmin (interfaz web para administrar la base de datos)
+- PHP + Apache
+
+====================
+
+====================
+
+3. PODEMOS REVISAR QUE LOS CONTENEDORES ESTEN CORRIENDO CON EL COMANDO
+
+# $ docker ps
+
+====================
+
+====================
+
+4. LUEGO REVISAMOS LA IP DE LA BASE DE DATOS QUE ESTA EN LA IMAGE postgres:13, PARA ESTO USAMOS EL SIGUIENTE COMANDO
 
 # $ docker inspect [CONTAINER ID]
 
@@ -15,4 +61,26 @@ VAMOS AL FINAL PARA TOMAR LA "IPAddress": "xxx.xx.x.x"
 
 ESA IP LA TENEMOS QUE COLOCAR EN EL ARCHIVO config/db_config.php en la variable $host
 
-FINALMENTE INGRESAMOS A http://localhost:8080/index.php
+====================
+
+5. FINALMENTE INGRESAMOS A
+http://localhost:8080/index.php
+
+====================
+
+====================
+6. ACCEDER A PGADMIN (opcional)
+
+http://localhost:5050
+usuario: admin@mail.com
+clave: admin123
+
+LUEGO HAY QUE INGRESAR EL NOMBRE DEL SERVIDOR
+- GENERAL / NOMBRE = desis
+- CONEXION / NOMBRE / DIRECCION DEL SERVIDOR = [IPAddress paso 4]
+- CONEXION / BASE DE DATOS DE MANTENIMIENTO = desis
+- CONEXION / PUERTO = 5432
+- CONEXION / NOMBRE USUARIO: admin
+- CONEXION / CLAVE = admin123
+
+====================

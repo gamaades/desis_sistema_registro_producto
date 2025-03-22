@@ -1,0 +1,57 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=desis
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin123
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./initdb:/docker-entrypoint-initdb.d  
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 5050:80
+  php:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - ./php/app:/var/www/html
+    depends_on:
+      - postgres
+
+# levantamos docker con el siguiente comando
+# $ docker-compose up -d postgres
+# bajamos docker con el siguiente comando
+# $ docker-compose down
+# para obtener la ip de nuestro contenedor de la base de datos, obtener el idcontainer, y luego ejecutamos el siguiente comando
+# docker inspect [CONTAINER ID]
+# la ip que tenemos que obtener es la IPAddress
+
+# con el siguiente comando entramos a la base de datos mediante la terminal
+# $ docker-compose exec postgres bash
+# esta seria la forma de ejecutar comando, hay que conectarse a la base de datos de la siguiente manera.
+# psql -h localhost -d my_store -U admin
+# con el siguiete comando nos muestra la estructura de la base de datos
+# \d+
+# para salir de la base de datos es de la siguiente manera
+# \q
+# Para salir del contenedor se hace con la palabra reservada
+# exit
+# levantamos pgadmin con el siguiente comando
+# $ docker-compose up -d pgadmin
+# entramos a
+# http://localhost:5050/
+# para correr phpmyadmin y que se conecte a la base de datos mysql, este tiene que tener el mismo nombre que el contenedor que hice para la base de datos de mysql, en este caso la base de datos se llama mysql, entonces la configuracion de phpmyadmin tiene que tener la siguiente configuracion para que esta funcione de manera correcta. - MYSQL_HOST=mysql
+# estos se levantan de la siguiente manera
+# docker-compose up -d mysql
+# docker-compose up -d phpmyadmin

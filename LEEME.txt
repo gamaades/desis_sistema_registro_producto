@@ -1,0 +1,18 @@
+PRIMERO HAY QUE LEVANTAR LOS CONTENEDORES DE DOCKER-COMPOSE CON LOS SIGUIENTES COMANDOS EN LA TERMINAL.
+
+# levantamos docker con el siguiente comando
+# $ docker-compose up -d postgres
+# $ docker-compose up -d pgadmin
+# $ docker-compose up -d php
+
+PODEMOS REVISAR QUE LOS CONTENEDORES ESTEN CORRIENDO CON EL COMANDO docker ps
+
+LUEGO REVISAMOS LA IP DE LA BASE DE DATOS QUE ESTA EN LA IMAGE postgres:13, PARA ESTO USAMOS EL SIGUIENTE COMANDO
+
+# $ docker inspect [CONTAINER ID]
+
+VAMOS AL FINAL PARA TOMAR LA "IPAddress": "xxx.xx.x.x"
+
+ESA IP LA TENEMOS QUE COLOCAR EN EL ARCHIVO config/db_config.php en la variable $host
+
+FINALMENTE INGRESAMOS A http://localhost:8080/index.php

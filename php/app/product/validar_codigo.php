@@ -1,4 +1,5 @@
 <?php
+
 header('Content-Type: application/json');
 
 // Obtener el código del parámetro de la URL

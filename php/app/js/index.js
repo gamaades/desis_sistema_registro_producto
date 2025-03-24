@@ -195,9 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (descripcion.length < 10 || descripcion.length > 1000) {
-        alert(
-          "La descripción del producto debe tener entre 10 y 1000 caracteres."
-        );
+        alert("La descripción del producto debe tener entre 10 y 1000 caracteres.");
         document.getElementById("txtDescripcion").focus();
         return;
       }
@@ -225,8 +223,6 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Producto guardado con éxito. ID: " + response.id);
             form.reset();
           } else {
-            console.log(response);
-
             alert("Error: " + response.message);
           }
         })

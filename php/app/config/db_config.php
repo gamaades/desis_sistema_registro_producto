@@ -1,5 +1,4 @@
 <?php
-// config/database.php
 
 // Configuración de la conexión a PostgreSQL
 $host = "172.19.0.2";  // IP del servidor PostgreSQL (ajustar si es necesario), tener en cuenta que si se usa Docker, la IP del servidor PostgreSQL es la misma que la del contenedor Docker.
